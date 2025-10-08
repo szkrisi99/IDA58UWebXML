@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Fő elem -->
+    <xs:element name="orarend" type="OrarendTipus"/>
+
+    <!-- Órarend típusa: több óra -->
+    <xs:complexType name="OrarendTipus">
+        <xs:sequence>
+            <xs:element name="ora" type="OraTipus" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Egy óra típusa -->
+    <xs:complexType name="OraTipus">
+        <xs:sequence>
+            <xs:element name="targy" type="xs:string"/>
+            <xs:element name="idopont" type="IdopontTipus"/>
+            <xs:element name="helyszin" type="xs:string"/>
+            <xs:element name="oktato" type="xs:string"/>
+            <xs:element name="szak" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:integer" use="required"/>
+        <xs:attribute name="tipus" type="OraTipusTipus" use="required"/>
+    </xs:complexType>
+
+    <!-- Időpont típusa -->
+    <xs:complexType name="IdopontTipus">
+        <xs:sequence>
+            <xs:element name="nap" type="NapTipus"/>
+            <xs:element name="tol" type="IdoTipus"/>
+            <xs:element name="ig" type="IdoTipus"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Nap típusa -->
+    <xs:simpleType name="NapTipus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Hétfő"/>
+            <xs:enumeration value="Kedd"/>
+            <xs:enumeration value="Szerda"/>
+            <xs:enumeration value="Csütörtök"/>
+            <xs:enumeration value="Péntek"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Idő (óra:perc formátum) -->
+    <xs:simpleType name="IdoTipus">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="23"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Óra típus típusa -->
+    <xs:simpleType name="OraTipusTipus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="eloadas"/>
+            <xs:enumeration value="gyakorlat"/>
+            <xs:enumeration value="labor"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

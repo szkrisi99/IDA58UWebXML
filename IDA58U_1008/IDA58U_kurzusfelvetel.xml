@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kurzusfelvetel tanev="2023/2024 I." egyetem="ME" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="IDA58U_kurzusfelvetel.xsd">
+    
+    <hallgato id="KPRLNM.ME">
+        <hnev></hnev>
+        <szulev></szulev>
+        <szak evf="5"></szak>
+    </hallgato>
+
+    <kurzusok>
+        <kurzus id="GEIAL322-B" nyelv="magyar">
+            <kurzusnev>Adatkezelés XML környezetben</kurzusnev>
+            <kredit>5</kredit>
+            <hely>XXXII.</hely>
+            <idopont>Szerda 10:00-12:00</idopont>
+            <oktato>Dr. Bednarik László</oktato>
+        </kurzus>
+        <kurzus id="GEIAL304-B" nyelv="magyar" jovahagyas="igen">
+            <kurzusnev>Vállalati Információs Rendszerek fejlesztése</kurzusnev>
+            <kredit>5</kredit>
+            <hely>II A2 mfsz.</hely>
+            <idopont>Szerda 08:00-10:00</idopont>
+            <oktato>Dr. Kovács Szilveszter</oktato>
+            <oraado>Óraadó Tanár</oraado>
+        </kurzus>
+        <kurzus id="GEMAK231-B" nyelv="magyar" jovahagyas="nem">
+            <kurzusnev>Lineáris algebra numerikus módszerei</kurzusnev>
+            <kredit>4</kredit>
+            <hely>X ea.</hely>
+            <idopont>Hétfő 08:00-10:00</idopont>
+            <oktato>Dr. Karácsony Zsolt</oktato>
+        </kurzus>
+    </kurzusok>
+
+</kurzusfelvetel>
