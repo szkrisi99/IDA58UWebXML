@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hallgatok>
+    <hallgato id="01">
+        <keresztnev>Kristóf</keresztnev>
+        <vezeteknev>Szabó</vezeteknev>
+        <foglalkozas>PHP fejlesztő</foglalkozas>
+    </hallgato>
+    <hallgato id="02">
+        <keresztnev>Tamás</keresztnev>
+        <vezeteknev>Kiss</vezeteknev>
+        <foglalkozas>Backend fejlesztő</foglalkozas>
+    </hallgato>
+    <hallgato id="03">
+        <keresztnev>Gábor</keresztnev>
+        <vezeteknev>Nagy</vezeteknev>
+        <foglalkozas>Frontedn fejlesztő</foglalkozas>
+    </hallgato>
+    <hallgato id="04">
+        <keresztnev>Flóra</keresztnev>
+        <vezeteknev>Németh</vezeteknev>
+        <foglalkozas>UX Dizájner</foglalkozas>
+    </hallgato>
+</hallgatok>
