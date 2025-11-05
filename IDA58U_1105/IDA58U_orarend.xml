@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <orarend xmlns:xs="https//www.w3.org/2001/XMLSchema" xs:noNamespaceSchemaLocation="orarend.xsd">
-    <ora id="01" tipus="gyakorlat">
+    <ora id="1" tipus="gyakorlat">
         <targy>XML</targy>
         <idopont>
             <nap>Szerda</nap>
@@ -12,7 +12,7 @@
         <szak>Programetervező Informatikus BSc</szak>
     </ora>
 
-    <ora id="02" tipus="eloadas">
+    <ora id="1" tipus="eloadas">
         <targy>Vállalati Információs Rendszerek fejlesztése</targy>
         <idopont>
             <nap>Szerda</nap>
