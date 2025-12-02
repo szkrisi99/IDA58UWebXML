@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RepuloterAdatbazis>
+
+    <!-- LÉGITÁRSASÁGOK -->
+    <Legitarsasag LegitarsasagID="1">
+        <Alapitas>1990</Alapitas>
+        <Nev>Hungarian Air</Nev>
+        <Szekhely>Budapest</Szekhely>
+    </Legitarsasag>
+
+    <Legitarsasag LegitarsasagID="2">
+        <Alapitas>1985</Alapitas>
+        <Nev>SkyWings Europe</Nev>
+        <Szekhely>Vienna</Szekhely>
+    </Legitarsasag>
+
+    <Legitarsasag LegitarsasagID="3">
+        <Alapitas>2001</Alapitas>
+        <Nev>Danube Flights</Nev>
+        <Szekhely>Bratislava</Szekhely>
+    </Legitarsasag>
+
+
+    <!-- REPÜLŐTEREK -->
+    <Repuloter RepuloterID="1">
+        <Nev>Budapest Liszt Ferenc</Nev>
+        <Cim>
+            <Orszag>Magyarország</Orszag>
+            <Varos>Budapest</Varos>
+        </Cim>
+        <Fokapacitas>120</Fokapacitas>
+    </Repuloter>
+
+    <Repuloter RepuloterID="2">
+        <Nev>Vienna International Airport</Nev>
+        <Cim>
+            <Orszag>Ausztria</Orszag>
+            <Varos>Vienna</Varos>
+        </Cim>
+        <Fokapacitas>150</Fokapacitas>
+    </Repuloter>
+
+    <Repuloter RepuloterID="3">
+        <Nev>M. R. Štefánik Airport</Nev>
+        <Cim>
+            <Orszag>Szlovákia</Orszag>
+            <Varos>Bratislava</Varos>
+        </Cim>
+        <Fokapacitas>90</Fokapacitas>
+    </Repuloter>
+
+
+    <!-- GÉPEK -->
+    <Gep GepID="1" LegitarsasagID="1">
+        <Tipus>Airbus A320</Tipus>
+        <GyartasiEv>2012</GyartasiEv>
+        <Uleskapacitas>180</Uleskapacitas>
+    </Gep>
+
+    <Gep GepID="2" LegitarsasagID="2">
+        <Tipus>Boeing 737</Tipus>
+        <GyartasiEv>2016</GyartasiEv>
+        <Uleskapacitas>160</Uleskapacitas>
+    </Gep>
+
+    <Gep GepID="3" LegitarsasagID="3">
+        <Tipus>Embraer 195</Tipus>
+        <GyartasiEv>2019</GyartasiEv>
+        <Uleskapacitas>120</Uleskapacitas>
+    </Gep>
+
+
+    <!-- JÁRATOK -->
+    <Jarat JaratID="1" GepID="1" RepuloterID="1">
+        <Jaratszam>HA123</Jaratszam>
+        <Menetrend>
+            <Indulas>2025-03-20T08:30</Indulas>
+            <Erkezes>2025-03-20T09:45</Erkezes>
+        </Menetrend>
+        <Helyszin>
+            <Honnan>Budapest</Honnan>
+            <Hova>Vienna</Hova>
+        </Helyszin>
+    </Jarat>
+
+    <Jarat JaratID="2" GepID="2" RepuloterID="2">
+        <Jaratszam>SW455</Jaratszam>
+        <Menetrend>
+            <Indulas>2025-03-22T12:00</Indulas>
+            <Erkezes>2025-03-22T14:15</Erkezes>
+        </Menetrend>
+        <Helyszin>
+            <Honnan>Vienna</Honnan>
+            <Hova>Budapest</Hova>
+        </Helyszin>
+    </Jarat>
+
+    <Jarat JaratID="3" GepID="3" RepuloterID="3">
+        <Jaratszam>DF210</Jaratszam>
+        <Menetrend>
+            <Indulas>2025-04-02T06:00</Indulas>
+            <Erkezes>2025-04-02T07:20</Erkezes>
+        </Menetrend>
+        <Helyszin>
+            <Honnan>Bratislava</Honnan>
+            <Hova>Vienna</Hova>
+        </Helyszin>
+    </Jarat>
+
+
+    <!-- UTASOK -->
+    <Utas UtasID="1">
+        <Nev>Kovács Péter</Nev>
+        <SzuletesiDatum>1990-05-12</SzuletesiDatum>
+        <Utlevelszam>HX1234567</Utlevelszam>
+        <Telefonszam>+36 30 555 1234</Telefonszam>
+    </Utas>
+
+    <Utas UtasID="2">
+        <Nev>Anna Müller</Nev>
+        <SzuletesiDatum>1988-11-03</SzuletesiDatum>
+        <Utlevelszam>AT99887766</Utlevelszam>
+        <Telefonszam>+43 660 123 4567</Telefonszam>
+    </Utas>
+
+    <Utas UtasID="3">
+        <Nev>Ján Novak</Nev>
+        <SzuletesiDatum>1985-02-17</SzuletesiDatum>
+        <Utlevelszam>SK55221133</Utlevelszam>
+    </Utas>
+
+
+    <!-- FOGLALÁSOK -->
+    <Foglalas FoglalasID="1" JaratID="1" UtasID="1">
+        <Datum>2025-03-10</Datum>
+        <Ulesszam>12A</Ulesszam>
+    </Foglalas>
+
+    <Foglalas FoglalasID="2" JaratID="2" UtasID="2">
+        <Datum>2025-03-15</Datum>
+        <Ulesszam>7C</Ulesszam>
+    </Foglalas>
+
+    <Foglalas FoglalasID="3" JaratID="3" UtasID="3">
+        <Datum>2025-03-18</Datum>
+        <Ulesszam>3B</Ulesszam>
+    </Foglalas>
+
+</RepuloterAdatbazis>

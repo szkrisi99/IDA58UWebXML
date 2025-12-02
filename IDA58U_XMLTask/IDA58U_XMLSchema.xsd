@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Egyszerű típusok -->
+    <xs:simpleType name="PositiveInteger">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DateType">
+        <xs:restriction base="xs:date"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="DateTimeType">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+
+    <!-- Cím komplex típus -->
+    <xs:complexType name="CimType">
+        <xs:sequence>
+            <xs:element name="Orszag" type="xs:string"/>
+            <xs:element name="Varos" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Légitársaság komplex típus -->
+    <xs:complexType name="LegitarsasagType">
+        <xs:sequence>
+            <xs:element name="Alapitas" type="PositiveInteger"/>
+            <xs:element name="Nev" type="xs:string"/>
+            <xs:element name="Szekhely" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="LegitarsasagID" type="PositiveInteger" use="required"/>
+    </xs:complexType>
+
+    <!-- Repülőtér komplex típus -->
+    <xs:complexType name="RepuloterType">
+        <xs:sequence>
+            <xs:element name="Nev" type="xs:string"/>
+            <xs:element name="Cim" type="CimType"/>
+            <xs:element name="Fokapacitas" type="PositiveInteger"/>
+        </xs:sequence>
+        <xs:attribute name="RepuloterID" type="PositiveInteger" use="required"/>
+    </xs:complexType>
+
+    <!-- Gép komplex típus -->
+    <xs:complexType name="GepType">
+        <xs:sequence>
+            <xs:element name="Tipus" type="xs:string"/>
+            <xs:element name="GyartasiEv" type="PositiveInteger"/>
+            <xs:element name="Uleskapacitas" type="PositiveInteger"/>
+        </xs:sequence>
+        <xs:attribute name="GepID" type="PositiveInteger" use="required"/>
+        <xs:attribute name="LegitarsasagID" type="PositiveInteger" use="required"/>
+    </xs:complexType>
+
+    <!-- Menetrend komplex típus -->
+    <xs:complexType name="MenetrendType">
+        <xs:sequence>
+            <xs:element name="Indulas" type="DateTimeType"/>
+            <xs:element name="Erkezes" type="DateTimeType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Helyszín komplex típus -->
+    <xs:complexType name="HelyszinType">
+        <xs:sequence>
+            <xs:element name="Honnan" type="xs:string"/>
+            <xs:element name="Hova" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Járat komplex típus -->
+    <xs:complexType name="JaratType">
+        <xs:sequence>
+            <xs:element name="Jaratszam" type="xs:string"/>
+            <xs:element name="Menetrend" type="MenetrendType"/>
+            <xs:element name="Helyszin" type="HelyszinType"/>
+        </xs:sequence>
+        <xs:attribute name="JaratID" type="PositiveInteger" use="required"/>
+        <xs:attribute name="GepID" type="PositiveInteger" use="required"/>
+        <xs:attribute name="RepuloterID" type="PositiveInteger" use="required"/>
+    </xs:complexType>
+
+    <!-- Utas komplex típus -->
+    <xs:complexType name="UtasType">
+        <xs:sequence>
+            <xs:element name="Nev" type="xs:string"/>
+            <xs:element name="SzuletesiDatum" type="DateType"/>
+            <xs:element name="Utlevelszam" type="xs:string"/>
+            <xs:element name="Telefonszam" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="UtasID" type="PositiveInteger" use="required"/>
+    </xs:complexType>
+
+    <!-- Foglalás komplex típus -->
+    <xs:complexType name="FoglalasType">
+        <xs:sequence>
+            <xs:element name="Datum" type="DateType"/>
+            <xs:element name="Ulesszam" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="FoglalasID" type="PositiveInteger" use="required"/>
+        <xs:attribute name="JaratID" type="PositiveInteger" use="required"/>
+        <xs:attribute name="UtasID" type="PositiveInteger" use="required"/>
+    </xs:complexType>
+
+    <!-- Fő elem -->
+    <xs:element name="RepuloterAdatbazis">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Legitarsasag" type="LegitarsasagType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="Repuloter" type="RepuloterType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="Gep" type="GepType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="Jarat" type="JaratType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="Utas" type="UtasType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="Foglalas" type="FoglalasType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        
+        <!-- Kulcsok a fő elemekhez -->
+        <xs:key name="LegitarsasagPK">
+            <xs:selector xpath="Legitarsasag"/>
+            <xs:field xpath="@LegitarsasagID"/>
+        </xs:key>
+
+        <xs:key name="RepuloterPK">
+            <xs:selector xpath="Repuloter"/>
+            <xs:field xpath="@RepuloterID"/>
+        </xs:key>
+
+        <xs:key name="GepPK">
+            <xs:selector xpath="Gep"/>
+            <xs:field xpath="@GepID"/>
+        </xs:key>
+
+        <xs:key name="JaratPK">
+            <xs:selector xpath="Jarat"/>
+            <xs:field xpath="@JaratID"/>
+        </xs:key>
+
+        <xs:key name="UtasPK">
+            <xs:selector xpath="Utas"/>
+            <xs:field xpath="@UtasID"/>
+        </xs:key>
+
+        <xs:key name="FoglalasPK">
+            <xs:selector xpath="Foglalas"/>
+            <xs:field xpath="@FoglalasID"/>
+        </xs:key>
+
+        <!-- Kulcshivatkozások (FK-k) -->
+        <xs:keyref name="Gep_Legitarsasag_FK" refer="LegitarsasagPK">
+            <xs:selector xpath="Gep"/>
+            <xs:field xpath="@LegitarsasagID"/>
+        </xs:keyref>
+
+        <xs:keyref name="Jarat_Gep_FK" refer="GepPK">
+            <xs:selector xpath="Jarat"/>
+            <xs:field xpath="@GepID"/>
+        </xs:keyref>
+
+        <xs:keyref name="Jarat_Repuloter_FK" refer="RepuloterPK">
+            <xs:selector xpath="Jarat"/>
+            <xs:field xpath="@RepuloterID"/>
+        </xs:keyref>
+
+        <xs:keyref name="Foglalas_Jarat_FK" refer="JaratPK">
+            <xs:selector xpath="Foglalas"/>
+            <xs:field xpath="@JaratID"/>
+        </xs:keyref>
+
+        <xs:keyref name="Foglalas_Utas_FK" refer="UtasPK">
+            <xs:selector xpath="Foglalas"/>
+            <xs:field xpath="@UtasID"/>
+        </xs:keyref>
+    </xs:element>
+
+</xs:schema>
