@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hallgatok>
+    <hallgato id="1">
+        <nev>Tóth Milán</nev>
+        <becenev>Miló</becenev>
+        <kor>22</kor>
+        <osztondij>60000</osztondij>
+    </hallgato>
+
+    <hallgato id="2">
+        <nev>Szabó Kristóf</nev>
+        <becenev>Krinya</becenev>
+        <kor>26</kor>
+        <osztondij>52000</osztondij>
+    </hallgato>
+
+    <hallgato id="3">
+        <nev>Lakatos Béla</nev>
+        <becenev>Béci</becenev>
+        <kor>35</kor>
+        <osztondij>45000</osztondij>
+    </hallgato>
+</hallgatok>

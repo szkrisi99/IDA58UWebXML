@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns:xs="https//www.w3.org/2001/XMLSchema" xs:noNamespaceSchemaLocation="studentIDA58U.xsd">
+    <student id="1">
+        <vezeteknev>Tóth</vezeteknev>
+        <keresztnev>Milán</keresztnev>
+        <becenev>Miló</becenev>
+        <kor>22</kor>
+    </student>
+    <student id="2">
+        <vezeteknev>Szabó</vezeteknev>
+        <keresztnev>Kristóf</keresztnev>
+        <becenev>Krinya</becenev>
+        <kor>23</kor>
+    </student>
+    <student id="3">
+        <vezeteknev>Lakatos</vezeteknev>
+        <keresztnev>Béla</keresztnev>
+        <becenev>Béci</becenev>
+        <kor>35</kor>
+    </student>
+</class>

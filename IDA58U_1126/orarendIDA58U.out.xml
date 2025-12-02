@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orarend_kimenet>
+    <ora id="1">
+        <tipus>gyakorlat</tipus>
+        <targy>XML</targy>
+        <nap>Szerda</nap>
+        <tol>10</tol>
+        <ig>12</ig>
+        <helyszin>IN/103</helyszin>
+        <oktato>Dr. Bednarik László</oktato>
+        <szak>Programetervező Informatikus BSc</szak>
+    </ora>
+
+    <ora id="1">
+        <tipus>eloadas</tipus>
+        <targy>Vállalati Információs Rendszerek fejlesztése</targy>
+        <nap>Szerda</nap>
+        <tol>14</tol>
+        <ig>16</ig>
+        <helyszin>IN/103</helyszin>
+        <oktato>????</oktato>
+        <szak>Programetervező Informatikus BSc</szak>
+    </ora>
+</orarend_kimenet>
