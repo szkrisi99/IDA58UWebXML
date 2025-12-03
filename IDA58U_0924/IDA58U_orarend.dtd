@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+        <!ELEMENT IDA58U_orarend (ora)+>
+
+        <!ELEMENT ora (targy,idopont,helyszin,oktato,szak)>
+        <!ATTLIST ora id ID #REQUIRED>
+        <!ATTLIST ora tipus (Eloadas|Gyakorlat) #REQUIRED>
+
+        <!ELEMENT targy (#PCDATA)>
+
+        <!ELEMENT idopont (nap,tol,ig)>
+
+        <!ELEMENT nap (#PCDATA)>
+        <!ELEMENT tol (#PCDATA)>
+        <!ELEMENT ig (#PCDATA)>
+
+        <!ELEMENT helyszin (#PCDATA)>
+        <!ELEMENT oktato (#PCDATA)>
+        <!ELEMENT szak (#PCDATA)>

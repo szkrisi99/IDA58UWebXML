@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <konferencia>
+     <cim>XML előnyei</cim>
+     <hallgatok>
+         <hallgato>
+             <nev>Bodnár László</nev>
+             <lakcim>Kazincbarcika joszerencset ut 2</lakcim>
+         </hallgato>
+     </hallgatok>
+     <helyszin>Miskolci egyetem Info 103</helyszin>
+     <eloado>
+         <nev>Nagy Andrea</nev>
+         <adoszam>5646456</adoszam>
+         <lakcim>Miskolc villanyrendor 5</lakcim>
+     </eloado>
+     <datum>2025.09.17</datum>
+ </konferencia>

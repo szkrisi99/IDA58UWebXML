@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE IDA58U_orarend[
+        <!ELEMENT IDA58U_orarend (ora)+>
+
+        <!ELEMENT ora (targy,idopont,helyszin,oktato,szak)>
+        <!ATTLIST ora id ID #REQUIRED>
+        <!ATTLIST ora tipus (Eloadas|Gyakorlat) #REQUIRED>
+
+        <!ELEMENT targy (#PCDATA)>
+
+        <!ELEMENT idopont (nap,tol,ig)>
+
+        <!ELEMENT nap (#PCDATA)>
+        <!ELEMENT tol (#PCDATA)>
+        <!ELEMENT ig (#PCDATA)>
+
+        <!ELEMENT helyszin (#PCDATA)>
+        <!ELEMENT oktato (#PCDATA)>
+        <!ELEMENT szak (#PCDATA)>
+        ]>
+
+<IDA58U_orarend>
+    <ora id="1" tipus="gyakorlat">
+        <targy>XML</targy>
+        <idopont>
+            <nap>Szerda</nap>
+            <tol>10</tol>
+            <ig>12</ig>
+        </idopont>
+        <helyszin>IN/103</helyszin>
+        <oktato>Dr. Bednarik László</oktato>
+        <szak>Programetervező Informatikus BSc</szak>
+    </ora>
+
+    <ora id="1" tipus="eloadas">
+        <targy>Vállalati Információs Rendszerek fejlesztése</targy>
+        <idopont>
+            <nap>Szerda</nap>
+            <tol>14</tol>
+            <ig>16</ig>
+        </idopont>
+        <helyszin>IN/103</helyszin>
+        <oktato>????</oktato>
+        <szak>Programetervező Informatikus BSc</szak>
+    </ora>
+</IDA58U_orarend>
