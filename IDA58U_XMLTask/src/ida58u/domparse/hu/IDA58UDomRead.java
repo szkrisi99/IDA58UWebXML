@@ -97,7 +97,7 @@ public class IDA58UDomRead {
                         sb.append("Név: ").append(getElementText(element, "Nev")).append("\n");
                         sb.append("Születési dátum: ").append(getElementText(element, "SzuletesiDatum")).append("\n");
                         sb.append("Útlevélszám: ").append(getElementText(element, "Utlevelszam")).append("\n");
-                        sb.append("Telefonszám: ").append(getElementText(element, "Telefonszam")).append("\n");
+                        sb.append("Telefonszám: ").append(getAllElementsText(element, "Telefonszam")).append("\n");
                         break;
                     case "Foglalas":
                     	sb.append("Foglalás ID: ").append(element.getAttribute("FoglalasID")).append("\n");
@@ -162,4 +162,22 @@ public class IDA58UDomRead {
         }
         return "";
     }
+    
+    //Többértékű tulajdonságok visszaadása
+    private static String getAllElementsText(Element parent, String tagName) {
+        NodeList nodeList = parent.getElementsByTagName(tagName);
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getFirstChild() != null) {
+                sb.append(node.getFirstChild().getNodeValue().trim());
+                if (i < nodeList.getLength() - 1) {
+                    sb.append(", ");
+                }
+            }
+        }
+        return sb.toString();
+    }
+
 }
