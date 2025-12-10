@@ -127,6 +127,12 @@
                 <xs:element name="Pilota" type="PilotaType" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
+
+        <!-- Unique értékek -->
+        <xs:unique name="Utas_Utlevel_Unique">
+            <xs:selector xpath="Utas"/>
+            <xs:field xpath="Utlevelszam"/>
+        </xs:unique>
         
         <!-- Kulcsok a fő elemekhez -->
         <xs:key name="LegitarsasagPK">

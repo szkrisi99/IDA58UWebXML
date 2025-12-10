@@ -103,7 +103,7 @@
         </Menetrend>
         <Helyszin>
             <Honnan>Bratislava</Honnan>
-            <Hova>Vienna</Hova>
+            <Hova>London</Hova>
         </Helyszin>
     </Jarat>
 
@@ -114,6 +114,7 @@
         <SzuletesiDatum>1990-05-12</SzuletesiDatum>
         <Utlevelszam>HX1234567</Utlevelszam>
         <Telefonszam>+36 30 555 1234</Telefonszam>
+        <Telefonszam>+36 30 555 4321</Telefonszam>
     </Utas>
 
     <Utas UtasID="2">
@@ -121,6 +122,8 @@
         <SzuletesiDatum>1988-11-03</SzuletesiDatum>
         <Utlevelszam>AT99887766</Utlevelszam>
         <Telefonszam>+43 660 123 4567</Telefonszam>
+        <Telefonszam>+43 556 321 4567</Telefonszam>
+        <Telefonszam>+43 700 123 4567</Telefonszam>
     </Utas>
 
     <Utas UtasID="3">
