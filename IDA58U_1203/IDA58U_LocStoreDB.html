@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>LocalStorage Hallgatói Adatbázis</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 25px;
+        background: #f4f4f4;
+    }
+    h2 { margin-top: 30px; }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 6px rgba(0,0,0,0.2);
+        margin-bottom: 25px;
+    }
+
+    input, select, button {
+        padding: 8px;
+        margin: 5px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+
+    th {
+        background: #eee;
+        cursor: pointer;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        border: none;
+    }
+    .btn-edit { background: #4CAF50; color: white; }
+    .btn-delete { background: #d9534f; color: white; }
+    .btn-save { background: #0275d8; color: white; }
+</style>
+</head>
+<body>
+
+<h1>LocalStorage – Hallgatói Adatbázis</h1>
+
+<!-- AI segítségével készült -->
+
+<!-- -------------------- FORM ------------------------- -->
+<div class="card">
+    <h2>Hallgató rögzítése / módosítása</h2>
+    <input type="hidden" id="editIndex">
+
+    <input type="text" id="nev" placeholder="Név"><br>
+    <input type="text" id="evfolyam" placeholder="Évfolyam"><br>
+    <input type="text" id="szak" placeholder="Szak"><br>
+    <input type="email" id="email" placeholder="Email"><br>
+    <input type="text" id="neptun" placeholder="Neptun kód"><br>
+
+    <button class="btn btn-save" onclick="mentes()">Mentés</button>
+</div>
+
+<!-- -------------------- KERESÉS ------------------------- -->
+<div class="card">
+    <h2>Keresés</h2>
+    <input type="text" id="keresNev" placeholder="Név">
+    <input type="text" id="keresEvfolyam" placeholder="Évfolyam">
+    <input type="text" id="keresSzak" placeholder="Szak">
+    <input type="text" id="keresEmail" placeholder="Email">
+    <input type="text" id="keresNeptun" placeholder="Neptun kód">
+    <button onclick="listaz()">Keres</button>
+</div>
+
+<!-- -------------------- RENDEZÉS ------------------------- -->
+<div class="card">
+    <h2>Rendezés</h2>
+    <button onclick="rendez('nev')">Név szerint</button>
+    <button onclick="rendez('evfolyam')">Évfolyam szerint</button>
+</div>
+
+<!-- -------------------- EXPORT / IMPORT ------------------------- -->
+<div class="card">
+    <h2>Export / Import JSON</h2>
+    <button onclick="exportJSON()">Export JSON</button>
+    <input type="file" id="importFile" accept="application/json">
+    <button onclick="importJSON()">Import</button>
+</div>
+
+<!-- -------------------- LISTA ------------------------- -->
+<h2>Hallgatók listája</h2>
+<table id="tabla">
+    <thead>
+        <tr>
+            <th>Név</th>
+            <th>Évfolyam</th>
+            <th>Szak</th>
+            <th>Email</th>
+            <th>Neptun</th>
+            <th>Műveletek</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+// ============ LOCAL STORAGE KEZELÉS =============
+
+function getDB() {
+    return JSON.parse(localStorage.getItem("hallgatok")) || [];
+}
+
+function saveDB(lista) {
+    localStorage.setItem("hallgatok", JSON.stringify(lista));
+}
+
+// ============ MENTÉS (CREATE + UPDATE) =============
+
+function mentes() {
+    let nev = document.getElementById("nev").value;
+    let evfolyam = document.getElementById("evfolyam").value;
+    let szak = document.getElementById("szak").value;
+    let email = document.getElementById("email").value;
+    let neptun = document.getElementById("neptun").value;
+    let editIndex = document.getElementById("editIndex").value;
+
+    if (!nev || !evfolyam || !szak || !email || !neptun) {
+        alert("Minden mező kitöltése kötelező!");
+        return;
+    }
+
+    let db = getDB();
+
+    let adat = { nev, evfolyam, szak, email, neptun };
+
+    if (editIndex) {
+        db[editIndex] = adat; // módosítás
+        document.getElementById("editIndex").value = "";
+    } else {
+        db.push(adat); // új felvétel
+    }
+
+    saveDB(db);
+
+    torolForm();
+    listaz();
+}
+
+function torolForm() {
+    document.getElementById("nev").value = "";
+    document.getElementById("evfolyam").value = "";
+    document.getElementById("szak").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("neptun").value = "";
+}
+
+// ============ LISTÁZÁS (READ) + KERESÉS =============
+
+function listaz() {
+    let db = getDB();
+
+    // keresési értékek
+    let kNev = document.getElementById("keresNev").value.toLowerCase();
+    let kEvf = document.getElementById("keresEvfolyam").value.toLowerCase();
+    let kSzak = document.getElementById("keresSzak").value.toLowerCase();
+    let kEmail = document.getElementById("keresEmail").value.toLowerCase();
+    let kNeptun = document.getElementById("keresNeptun").value.toLowerCase();
+
+    db = db.filter(x =>
+        x.nev.toLowerCase().includes(kNev) &&
+        x.evfolyam.toLowerCase().includes(kEvf) &&
+        x.szak.toLowerCase().includes(kSzak) &&
+        x.email.toLowerCase().includes(kEmail) &&
+        x.neptun.toLowerCase().includes(kNeptun)
+    );
+
+    let tbody = document.querySelector("#tabla tbody");
+    tbody.innerHTML = "";
+
+    db.forEach((x, i) => {
+        let sor = `
+            <tr>
+                <td>${x.nev}</td>
+                <td>${x.evfolyam}</td>
+                <td>${x.szak}</td>
+                <td>${x.email}</td>
+                <td>${x.neptun}</td>
+                <td>
+                    <button class="btn btn-edit" onclick="modosit(${i})">Módosítás</button>
+                    <button class="btn btn-delete" onclick="torol(${i})">Törlés</button>
+                </td>
+            </tr>
+        `;
+        tbody.innerHTML += sor;
+    });
+}
+
+// ============ MÓDOSÍTÁS (UPDATE) =============
+
+function modosit(index) {
+    let db = getDB();
+    let x = db[index];
+
+    document.getElementById("nev").value = x.nev;
+    document.getElementById("evfolyam").value = x.evfolyam;
+    document.getElementById("szak").value = x.szak;
+    document.getElementById("email").value = x.email;
+    document.getElementById("neptun").value = x.neptun;
+    document.getElementById("editIndex").value = index;
+}
+
+// ============ TÖRLÉS (DELETE) =============
+
+function torol(index) {
+    let db = getDB();
+    if (confirm("Biztosan törlöd?")) {
+        db.splice(index, 1);
+        saveDB(db);
+        listaz();
+    }
+}
+
+// ============ RENDEZÉS =============
+
+function rendez(mezo) {
+    let db = getDB();
+    db.sort((a, b) => a[mezo].localeCompare(b[mezo]));
+    saveDB(db);
+    listaz();
+}
+
+// ============ EXPORT JSON =============
+
+function exportJSON() {
+    let data = JSON.stringify(getDB(), null, 4);
+    let blob = new Blob([data], { type: "application/json" });
+    let url = URL.createObjectURL(blob);
+
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "hallgatok.json";
+    a.click();
+}
+
+// ============ IMPORT JSON =============
+
+function importJSON() {
+    let file = document.getElementById("importFile").files[0];
+    if (!file) return;
+
+    let reader = new FileReader();
+    reader.onload = function(e) {
+        let tartalom = JSON.parse(e.target.result);
+        saveDB(tartalom);
+        listaz();
+    };
+    reader.readAsText(file);
+}
+
+// oldal betöltéskor lista frissítés
+listaz();
+
+</script>
+</body>
+</html>

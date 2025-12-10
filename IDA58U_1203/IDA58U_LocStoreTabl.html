@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>LocalStorage Hallgatói Adatbázis</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 25px;
+        background: #f4f4f4;
+    }
+    h2 { margin-top: 30px; }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 6px rgba(0,0,0,0.2);
+        margin-bottom: 25px;
+    }
+
+    input, select, button {
+        padding: 8px;
+        margin: 5px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+
+    th {
+        background: #eee;
+        cursor: pointer;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        border: none;
+    }
+    .btn-edit { background: #4CAF50; color: white; }
+    .btn-delete { background: #d9534f; color: white; }
+    .btn-save { background: #0275d8; color: white; }
+</style>
+</head>
+<body>
+
+<h1>LocalStorage – Hallgatói Adatbázis</h1>
+
+<!-- AI segítségével készült -->
+
+<!-- -------------------- KERESÉS ------------------------- -->
+<div class="card">
+    <h2>Keresés</h2>
+    <input type="text" id="keresTargy" placeholder="Tárgy">
+    <button onclick="listaz()">Keres</button>
+</div>
+
+<!-- -------------------- EXPORT / IMPORT ------------------------- -->
+<div class="card">
+    <h2>Import JSON</h2>
+    <input type="file" id="importFile" accept="application/json">
+    <button onclick="importJSON()">Import</button>
+</div>
+
+<!-- -------------------- LISTA ------------------------- -->
+<h2>Órarend listája</h2>
+<table id="tabla">
+    <thead>
+        <tr>
+            <th>Tárgy</th>
+            <th>Időpont</th>
+            <th>Helyszín</th>
+            <th>Oktató</th>
+            <th>Szak</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+// ============ LOCAL STORAGE KEZELÉS =============
+
+function getDB() {
+    return JSON.parse(localStorage.getItem("hallgatok")) || [];
+}
+
+function saveDB(lista) {
+    localStorage.setItem("hallgatok", JSON.stringify(lista));
+}
+
+// ============ LISTÁZÁS (READ) + KERESÉS =============
+
+function listaz() {
+    let db = getDB();
+
+    // keresési értékek
+    let kNev = document.getElementById("keresTargy").value.toLowerCase();
+
+    db = db.filter(x =>
+        x.nev.toLowerCase().includes(kNev) &&
+        x.evfolyam.toLowerCase().includes(kEvf) &&
+        x.szak.toLowerCase().includes(kSzak) &&
+        x.email.toLowerCase().includes(kEmail) &&
+        x.neptun.toLowerCase().includes(kNeptun)
+    );
+
+    let tbody = document.querySelector("#tabla tbody");
+    tbody.innerHTML = "";
+
+    db.forEach((x, i) => {
+        let sor = `
+            <tr>
+                <td>${x.targy}</td>
+                <td>${x.idopont.tol} - ${x.idopont.ig}</td>
+                <td>${x.helyszin}</td>
+                <td>${x.oktato}</td>
+                <td>${x.szak}</td>
+            </tr>
+        `;
+        tbody.innerHTML += sor;
+    });
+}
+
+// ============ IMPORT JSON =============
+
+function importJSON() {
+    let file = document.getElementById("importFile").files[0];
+    if (!file) return;
+
+    let reader = new FileReader();
+    reader.onload = function(e) {
+        let tartalom = JSON.parse(e.target.result);
+        saveDB(tartalom);
+        listaz();
+    };
+    reader.readAsText(file);
+}
+
+// oldal betöltéskor lista frissítés
+listaz();
+
+</script>
+</body>
+</html>

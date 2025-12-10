@@ -1,0 +1,28 @@
+[
+    {
+        "id": "1",
+        "tipus": "gyakorlat",
+        "targy": "XML",
+        "idopont": {
+            "nap": "Szerda",
+            "tol": "10",
+            "ig": "12"
+        },
+        "helyszin": "IN/103",
+        "oktato": "Dr. Bednarik László",
+        "szak": "Programtervező Informatikus BSc"
+    },
+    {
+        "id": "2",
+        "tipus": "előadás",
+        "targy": "Vállalati Információs Rendszerek fejlesztése",
+        "idopont": {
+            "nap": "Szerda",
+            "tol": "14",
+            "ig": "16"
+        },
+        "helyszin": "IN/103",
+        "oktato": "??",
+        "szak": "Programtervező Informatikus BSc"
+    }
+]
