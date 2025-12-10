@@ -37,8 +37,8 @@ public class IDA58UDomRead {
             processElements(doc, output, "Jarat");
             processElements(doc, output, "Utas");
             processElements(doc, output, "Foglalas");
+            processElements(doc, output, "Pilota");
             
-
             // Kiírás a konzolra
             System.out.println(output.toString());
 
@@ -104,6 +104,12 @@ public class IDA58UDomRead {
                     	sb.append("Dátum: ").append(getElementText(element, "Datum")).append("\n");
                     	sb.append("Ülésszám: ").append(getElementText(element, "Ulesszam")).append("\n");
                     	break;
+                    case "Pilota":
+                    	sb.append("Pilóta ID: ").append(element.getAttribute("PilotaID")).append("\n");
+                    	sb.append("Név: ").append(getElementText(element, "Nev")).append("\n");
+                    	sb.append("Szolgálati évek: ").append(getElementText(element, "SzolgalatiEvek")).append("\n");
+                        sb.append("Rang: ").append(getElementText(element, "Rang")).append("\n");
+                        break;
                 }
             }
         }

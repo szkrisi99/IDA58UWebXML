@@ -51,19 +51,19 @@
 
 
     <!-- GÉPEK -->
-    <Gep GepID="1" LegitarsasagID="1">
+    <Gep GepID="1" LegitarsasagID="1" PilotaID="2">
         <Tipus>Airbus A320</Tipus>
         <GyartasiEv>2012</GyartasiEv>
         <Uleskapacitas>180</Uleskapacitas>
     </Gep>
 
-    <Gep GepID="2" LegitarsasagID="2">
+    <Gep GepID="2" LegitarsasagID="2" PilotaID="3">
         <Tipus>Boeing 737</Tipus>
         <GyartasiEv>2016</GyartasiEv>
         <Uleskapacitas>160</Uleskapacitas>
     </Gep>
 
-    <Gep GepID="3" LegitarsasagID="3">
+    <Gep GepID="3" LegitarsasagID="3" PilotaID="1">
         <Tipus>Embraer 195</Tipus>
         <GyartasiEv>2019</GyartasiEv>
         <Uleskapacitas>120</Uleskapacitas>
@@ -145,5 +145,22 @@
         <Datum>2025-03-18</Datum>
         <Ulesszam>3B</Ulesszam>
     </Foglalas>
+
+    <!-- PILÓTÁK -->
+    <Pilota PilotaID="1">
+        <Nev>Kovács Béla</Nev>
+        <SzolgalatiEvek>12</SzolgalatiEvek>
+        <Rang>Pilóta</Rang>
+    </Pilota>
+    <Pilota PilotaID="1">
+        <Nev>Frederic Newman</Nev>
+        <SzolgalatiEvek>22</SzolgalatiEvek>
+        <Rang>Pilóta</Rang>
+    </Pilota>
+    <Pilota PilotaID="1">
+        <Nev>Chris Taylor</Nev>
+        <SzolgalatiEvek>5</SzolgalatiEvek>
+        <Rang>Másodpilóta</Rang>
+    </Pilota>
 
 </RepuloterAdatbazis>

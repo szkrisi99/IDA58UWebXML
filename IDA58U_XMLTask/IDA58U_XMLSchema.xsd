@@ -105,6 +105,15 @@
         <xs:attribute name="UtasID" type="PositiveInteger" use="required"/>
     </xs:complexType>
 
+    <!-- Pilóta komplex típus -->
+    <xs:complexType name="PilotaType">
+        <xs:sequence>
+            <xs:element name="Nev" type="xs:string"/>
+            <xs:element name="SzolgalatiEvek" type="PositiveInteger"/>
+            <xs:element name="Rang" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
     <!-- Fő elem -->
     <xs:element name="RepuloterAdatbazis">
         <xs:complexType>
@@ -115,6 +124,7 @@
                 <xs:element name="Jarat" type="JaratType" minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="Utas" type="UtasType" minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element name="Foglalas" type="FoglalasType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="Pilota" type="PilotaType" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
         
@@ -149,6 +159,11 @@
             <xs:field xpath="@FoglalasID"/>
         </xs:key>
 
+        <xs:key name="PilotaPK">
+            <xs:selector xpath="Pilota"/>
+            <xs:field xpath="@PilotaID"/>
+        </xs:key>
+
         <!-- Kulcshivatkozások (FK-k) -->
         <xs:keyref name="Gep_Legitarsasag_FK" refer="LegitarsasagPK">
             <xs:selector xpath="Gep"/>
@@ -173,6 +188,11 @@
         <xs:keyref name="Foglalas_Utas_FK" refer="UtasPK">
             <xs:selector xpath="Foglalas"/>
             <xs:field xpath="@UtasID"/>
+        </xs:keyref>
+
+        <xs:keyref name="Gep_Pilota_FK" refer="PilotaPK">
+            <xs:selector xpath="Gep"/>
+            <xs:field xpath="@PilotaID"/>
         </xs:keyref>
     </xs:element>
 
